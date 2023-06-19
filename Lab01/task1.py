@@ -5,3 +5,8 @@ print("testing is okey")
 
 
 ##USED GPG KEY
+
+
+##TTY OKEY?????
+
+
