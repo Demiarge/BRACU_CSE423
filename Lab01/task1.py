@@ -1,6 +1,7 @@
 from OpenGL.GL import *
 from OpenGL.GLUT import *
 from OpenGL.GLU import *
+import random
 
 
 def draw_points(x, y):
@@ -24,7 +25,10 @@ def showScreen():
     iterate()
     glColor3f(1.0, 0.0, 1.0) #konokichur color set (RGB)
     #call the draw methods here
-    draw_points(250, 250)
+    for _ in range (50):
+        x = random.randint(0, 500)
+        y = random.randint(0,500)
+        draw_points(x,y)
     glutSwapBuffers()
 
 
