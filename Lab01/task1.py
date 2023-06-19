@@ -37,7 +37,7 @@ glutInit()
 glutInitDisplayMode(GLUT_RGBA)
 glutInitWindowSize(500, 500) #window size
 glutInitWindowPosition(0, 0)
-wind = glutCreateWindow(b"OpenGL Coding Practice") #window name
+wind = glutCreateWindow(b"Task 1 random dots") #window name
 glutDisplayFunc(showScreen)
 
 glutMainLoop()
