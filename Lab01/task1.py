@@ -37,3 +37,4 @@ wind = glutCreateWindow(b"OpenGL Coding Practice") #window name
 glutDisplayFunc(showScreen)
 
 glutMainLoop()
+
