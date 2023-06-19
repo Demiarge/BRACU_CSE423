@@ -1,4 +1,7 @@
-print("testing is okey"
+print("testing is okey")
 
 
 ##Maybe working
+
+
+##USED GPG KEY
