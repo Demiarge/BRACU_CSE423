@@ -23,11 +23,15 @@ def showScreen():
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
     glLoadIdentity()
     iterate()
-    glColor3f(1.0, 0.0, 1.0) #konokichur color set (RGB)
+     #konokichur color set (RGB)
     #call the draw methods here
     for _ in range (50):
+        a = random.uniform(0,1)
+        b = random.uniform(0,1)
+        c = random.uniform(0,1)
         x = random.randint(0, 500)
         y = random.randint(0,500)
+        glColor3f(a,b,c)
         draw_points(x,y)
     glutSwapBuffers()
 
