@@ -26,13 +26,8 @@ def showScreen():
      #konokichur color set (RGB)
     #call the draw methods here
     for _ in range (50):
-        a = random.uniform(0,1)
-        b = random.uniform(0,1)
-        c = random.uniform(0,1)
-        x = random.randint(0, 500)
-        y = random.randint(0,500)
-        glColor3f(a,b,c)
-        draw_points(x,y)
+        glColor3f(random.uniform(0,1),random.uniform(0,1),random.uniform(0,1)) #Create random colors
+        draw_points(random.randint(0, 500),random.randint(0, 500)) #Create random points
     glutSwapBuffers()
 
 
