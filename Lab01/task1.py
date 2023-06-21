@@ -5,9 +5,9 @@ import random
 
 
 def draw_points(x, y):
-    glPointSize(5) #pixel size. by default 1 thake
+    glPointSize(5) #pixel size select
     glBegin(GL_POINTS)
-    glVertex2f(x,y) #jekhane show korbe pixel
+    glVertex2f(x,y) #pixel location g
     glEnd()
 
 
