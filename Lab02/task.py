@@ -191,10 +191,10 @@ glutInit()
 glutInitDisplayMode(GLUT_RGBA)
 glutInitWindowSize(500, 500)
 glutInitWindowPosition(0, 0)
-lets_take_input_here = input("Please type your 6 digit student ID: ")
-while len(lets_take_input_here) != 6 or not lets_take_input_here.isdigit():
-    print("Please provide a valid 6 digit student ID.")
-    lets_take_input_here = input("Please type your 6 digit student ID: ")
+lets_take_input_here = input("Please type your 8 digit student ID: ")
+while len(lets_take_input_here) != 8 or not lets_take_input_here.isdigit():
+    print("Please provide a valid 8 digit student ID.")
+    lets_take_input_here = input("Please type your 8 digit student ID: ")
 
 xen = int(lets_take_input_here[-2])
 xen1 = int(lets_take_input_here[-1])
