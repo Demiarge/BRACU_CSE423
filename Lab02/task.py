@@ -152,6 +152,7 @@ def lets_draw_the_number(number):
 
     if number in number_draw_functions:
         for line in number_draw_functions[number]:
+
             draw_lines(*line)
 
     work_done = True
