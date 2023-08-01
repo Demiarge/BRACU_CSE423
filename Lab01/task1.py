@@ -7,7 +7,7 @@ import random
 def draw_points(x, y):
     glPointSize(5) #pixel size select
     glBegin(GL_POINTS)
-    glVertex2f(x,y) #pixel location g
+    glVertex2f(x,y) #pixel location
     glEnd()
 
 
