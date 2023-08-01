@@ -38,22 +38,21 @@ def MidpointCircle(radius, x0, y0):
         EightWaySymmetry(x, y, x0, y0)
 
 def draw_circle(radius, x, y):
-    MidpointCircle(radius, x, y)  # outer circle
-    MidpointCircle(radius // 2, x + radius // 2, y)  # Left inner circle
-    MidpointCircle(radius // 2, x - radius // 2, y)  # right inner circle
-    MidpointCircle(radius // 2, x, y + radius // 2)  # upper inner circle
-    MidpointCircle(radius // 2, x, y - radius // 2)  # Lower inner circle
+    MidpointCircle(radius, x, y)
+    MidpointCircle(radius // 2, x + radius // 2, y)  #R
+    MidpointCircle(radius // 2, x - radius // 2, y)  #L
+    MidpointCircle(radius // 2, x, y + radius // 2)  #U
+    MidpointCircle(radius // 2, x, y - radius // 2)  #B
 
-    opposite = int(math.sin(math.radians(45)) * radius / 2)
-    MidpointCircle(radius // 2, x + opposite, y + opposite)  # Right upper diagonal
-    MidpointCircle(radius // 2, x + opposite, y - opposite)  # Right lower diagonal
-    MidpointCircle(radius // 2, x - opposite, y + opposite)  # Left upper diagonal
-    MidpointCircle(radius // 2, x - opposite, y - opposite)  # Left lower diagonal
+    diagonal = int(math.sin(math.radians(45)) * radius / 2)
 
+    MidpointCircle(radius // 2, x + diagonal, y + diagonal) #LU
+    MidpointCircle(radius // 2, x + diagonal, y - diagonal) #LB
+    MidpointCircle(radius // 2, x - diagonal, y + diagonal) #RU
+    MidpointCircle(radius // 2, x - diagonal, y - diagonal) #RB
 def draw_points(x, y):
     glPointSize(2)
     glBegin(GL_POINTS)
-    #glColor3f(random.random(), random.random(), random.random())
     glVertex2f(x, y)
     glEnd()
 
@@ -69,18 +68,14 @@ def showScreen():
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
     glLoadIdentity()
     iterate()
-
-   # glColor3f(1.0, 1.0, 1.0)  # (Red, Green, Blue)
-
-    draw_circle(400, 500, 500)
-
+    draw_circle(350, 600, 600)
     glutSwapBuffers()
 
 glutInit()
 glutInitDisplayMode(GLUT_RGBA)
-glutInitWindowSize(1000, 1000)
+glutInitWindowSize(1200, 1200)
 glutInitWindowPosition(0, 0)
-wind = glutCreateWindow(b"LAB03_MidpointCircle")
+wind = glutCreateWindow(b"Lab 03 Midpoint Circle Drawing Algorithm")
 glutDisplayFunc(showScreen)
 glutMainLoop()
 
