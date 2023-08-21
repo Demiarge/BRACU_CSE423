@@ -80,3 +80,5 @@ glutDisplayFunc(showScreen)
 glutMainLoop()
 
 #bvh
+
+print(math.sin(math.radians(45)))
