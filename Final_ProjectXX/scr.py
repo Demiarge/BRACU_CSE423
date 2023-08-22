@@ -135,7 +135,7 @@ def draw_points(x, y):
     glEnd()
 
 #$
-def initgame():
+def initgame(): #prpfrnwrnd
     global playerturn, matrix
     playerturn = 1
     matrix = [[0 for _ in range(3)] for _ in range(3)]
@@ -153,7 +153,7 @@ def KeyPress(key, x, y):
         if gameover:
             if not exit_requested:
                 os._exit(0)  # Terminate the program without raising an exception
-    elif key == b'\x1b':
+    elif key == b'\x1b':#ESCKEY
         os._exit(0)
 
 def click(button, state, x, y):
@@ -174,7 +174,7 @@ def click(button, state, x, y):
 def drawString(s, x, y):
     glRasterPos2f(x, y)
     for char in s:
-        glutBitmapCharacter(font, char)  # Simply pass the character directly
+        glutBitmapCharacter(font, char)
 
 
 def drawlines():
@@ -213,37 +213,37 @@ def drawxo():
 def checkifwin():
     global player1score, player2score, scores_updated
 
-    for i in range(3):
+    for i in range(3): #RW
         if matrix[i][0] != 0 and matrix[i][0] == matrix[i][1] == matrix[i][2]:
-            if matrix[i][0] == 1 and not scores_updated:  # Check if player 1 wins
+            if matrix[i][0] == 1 and not scores_updated:  # p1 win
                 player1score += 1
                 scores_updated = True
-            elif matrix[i][0] == 2 and not scores_updated:  # Check if player 2 wins
+            elif matrix[i][0] == 2 and not scores_updated:  # p2 win
                 player2score += 1
                 scores_updated = True
             return True
-    for i in range(3):
+    for i in range(3): #CLM
         if matrix[0][i] != 0 and matrix[0][i] == matrix[1][i] == matrix[2][i]:
-            if matrix[0][i] == 1 and not scores_updated:  # Check if player 1 wins
+            if matrix[0][i] == 1 and not scores_updated:  # p1 win
                 player1score += 1
                 scores_updated = True
-            elif matrix[0][i] == 2 and not scores_updated:  # Check if player 2 wins
+            elif matrix[0][i] == 2 and not scores_updated:  # p2 win
                 player2score += 1
                 scores_updated = True
             return True
-    if matrix[0][0] != 0 and matrix[0][0] == matrix[1][1] == matrix[2][2]:
-        if matrix[0][0] == 1 and not scores_updated:  # Check if player 1 wins
+    if matrix[0][0] != 0 and matrix[0][0] == matrix[1][1] == matrix[2][2]: #TL BR
+        if matrix[0][0] == 1 and not scores_updated:  # p1 win
             player1score += 1
             scores_updated = True
-        elif matrix[0][0] == 2 and not scores_updated:  # Check if player 2 wins
+        elif matrix[0][0] == 2 and not scores_updated:  # p2 win
             player2score += 1
             scores_updated = True
         return True
-    if matrix[2][0] != 0 and matrix[2][0] == matrix[1][1] == matrix[0][2]:
-        if matrix[2][0] == 1 and not scores_updated:  # Check if player 1 wins
+    if matrix[2][0] != 0 and matrix[2][0] == matrix[1][1] == matrix[0][2]: #TR BL
+        if matrix[2][0] == 1 and not scores_updated:  # p1 win
             player1score += 1
             scores_updated = True
-        elif matrix[2][0] == 2 and not scores_updated:  # Check if player 2 wins
+        elif matrix[2][0] == 2 and not scores_updated:  # p2 win
             player2score += 1
             scores_updated = True
         return True
@@ -284,8 +284,9 @@ def display():
 
     if gameover:
 
-        glColor3f(0, 0, 0)
+        glColor3f(0.5, 0.0, 0.5)
         drawString(b"Player 1 Score: " + str(player1score).encode(), 40, 240)
+        glColor3f(random.random(), random.random(), random.random())
         drawString(b"Player 2 Score: " + str(player2score).encode(), 40, 265)
 
         glColor3f(1.0, 0.0, 0.0)
