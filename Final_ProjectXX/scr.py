@@ -4,6 +4,9 @@ import random
 import os
 font = GLUT_BITMAP_9_BY_15
 exit_requested = False
+scores_updated = False
+player1score = 0
+player2score = 0
 
 
 matrix = [[0 for _ in range(3)] for _ in range(3)]
@@ -139,12 +142,13 @@ def initgame():
 
 
 def KeyPress(key, x, y):
-    global gameover, exit_requested
+    global gameover, exit_requested , scores_updated
     if key == b'y':
         if gameover:
             gameover = False
             initgame()
             exit_requested = False  # Reset exit_requested when starting a new game
+            scores_updated = False
     elif key == b'n':
         if gameover:
             if not exit_requested:
@@ -206,22 +210,44 @@ def drawxo():
                 y_center = 100 + i * 100
                 MidpointCircle(circle_radius, x_center, y_center)
 
-
-
-
 def checkifwin():
+    global player1score, player2score, scores_updated
+
     for i in range(3):
         if matrix[i][0] != 0 and matrix[i][0] == matrix[i][1] == matrix[i][2]:
+            if matrix[i][0] == 1 and not scores_updated:  # Check if player 1 wins
+                player1score += 1
+                scores_updated = True
+            elif matrix[i][0] == 2 and not scores_updated:  # Check if player 2 wins
+                player2score += 1
+                scores_updated = True
             return True
     for i in range(3):
         if matrix[0][i] != 0 and matrix[0][i] == matrix[1][i] == matrix[2][i]:
+            if matrix[0][i] == 1 and not scores_updated:  # Check if player 1 wins
+                player1score += 1
+                scores_updated = True
+            elif matrix[0][i] == 2 and not scores_updated:  # Check if player 2 wins
+                player2score += 1
+                scores_updated = True
             return True
     if matrix[0][0] != 0 and matrix[0][0] == matrix[1][1] == matrix[2][2]:
+        if matrix[0][0] == 1 and not scores_updated:  # Check if player 1 wins
+            player1score += 1
+            scores_updated = True
+        elif matrix[0][0] == 2 and not scores_updated:  # Check if player 2 wins
+            player2score += 1
+            scores_updated = True
         return True
     if matrix[2][0] != 0 and matrix[2][0] == matrix[1][1] == matrix[0][2]:
+        if matrix[2][0] == 1 and not scores_updated:  # Check if player 1 wins
+            player1score += 1
+            scores_updated = True
+        elif matrix[2][0] == 2 and not scores_updated:  # Check if player 2 wins
+            player2score += 1
+            scores_updated = True
         return True
     return False
-
 
 def checkifdraw():
     for i in range(3):
@@ -229,7 +255,6 @@ def checkifdraw():
             if matrix[i][j] == 0:
                 return False
     return True
-
 
 def display():
     global playerturn, result, gameover
@@ -258,6 +283,11 @@ def display():
         result = 0
 
     if gameover:
+
+        glColor3f(0, 0, 0)
+        drawString(b"Player 1 Score: " + str(player1score).encode(), 40, 240)
+        drawString(b"Player 2 Score: " + str(player2score).encode(), 40, 265)
+
         glColor3f(1.0, 0.0, 0.0)
         drawString(b"Game Over!!!", 100, 160)
         if result == 0:
@@ -281,9 +311,6 @@ def reshape(x, y):
     glLoadIdentity()
     glOrtho(0, x, y, 0, 0, 1)
     glMatrixMode(GL_MODELVIEW)
-
-
-
 
 ##CALL EVERYTHING <3
 initgame()
